@@ -6,16 +6,16 @@ global $bdd;
     <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" src="./assets/css/style.css">
+        <link rel="stylesheet" type="text/css" href="./assets/css/style.min.css">
         <title>Pokedex</title>
     </head>
     <body>
-    <header>
-
-    </header>
+<!--    --><?php
+//    require('./header.php')
+//    ?>
     <main class="app">
         <?php
-        displayData();
+        displayPokemons();
         ?>
         ?>
     </main>
@@ -27,7 +27,7 @@ global $bdd;
 
 <?php
 
-function displayData()
+function displayPokemons()
 {
     global $bdd;
     $query = "SELECT * FROM pokedex.pokemon";
@@ -35,18 +35,3 @@ function displayData()
     print_r($res);
 }
 
-function listen()
-{
-    listenAdd();
-    listenDelete();
-}
-
-function listenAdd()
-{
-    if (isset($_POST["ville"]) && isset($_POST["haut"]) && isset($_POST["bas"])) {
-        $ville = $_POST["ville"];
-        $haut = $_POST["haut"];
-        $bas = $_POST["bas"];
-        echo StoreData($ville, $haut, $bas);
-    }
-}
