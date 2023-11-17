@@ -2,6 +2,7 @@
 require 'vendor/autoload.php';
 
 Dotenv\Dotenv::createUnsafeImmutable(__DIR__)->load();
+
 $bdd = connectDB();
 function connectDB()
 {
@@ -12,3 +13,4 @@ function connectDB()
         die('Erreur : ' . $e->getMessage());
     }
 }
+?>

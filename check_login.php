@@ -1,15 +1,6 @@
 <?php
 session_start();
 
-function checkLogin(){
-
-    if (!isset($_SESSION['username'])) {
-        header('Location: login.php');
-        exit();
-    }
-
-}
-
 if (isset($_POST['username']) && isset($_POST['password'])) {
     $username = $_POST['username'];
     $password = sha1($_POST['password']);
@@ -23,15 +14,14 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
     $data = $req->fetch();
 
-}
+    if ($data) {
+        $_SESSION['username'] = $username;
+        header('Location: index.php');
+        exit();
+    }
 
-if ($data) {
-    $_SESSION['username'] = $username;
-    header('Location: index.php');
-    exit();
-} 
-else {
-    header('Location: login.php');
 }
+header('Location: login.php');
+exit();
 
 ?>
